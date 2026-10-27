@@ -26,9 +26,12 @@ async def lifespan(app: FastAPI):
     yield
 
 
-app = FastAPI(title="CKD eGFR Progression API", version="1.0.0", lifespan=lifespan,
-              docs_url="/api/docs" if settings.environment != "production" else None,
-              redoc_url=None, openapi_url="/api/openapi.json" if settings.environment != "production" else None)
+app = FastAPI(title="CKD eGFR Progression API", 
+              version="1.0.0", 
+              lifespan=lifespan,
+              docs_url="/api/docs",
+              redoc_url=None, 
+              openapi_url="/api/openapi.json" )
 
 app.add_middleware(CORSMiddleware, allow_origins=settings.cors_list, allow_credentials=False,
                    allow_methods=["GET", "POST", "PATCH", "DELETE"], allow_headers=["Authorization", "Content-Type"])
